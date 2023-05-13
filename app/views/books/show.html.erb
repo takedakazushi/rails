@@ -1,0 +1,11 @@
+<h1>Show</h1>
+<p><%= @book.title %></p>
+<h2>本文</h2>
+<p><%= @book.body %></p>
+<h2>画像</h2>
+<% if @book.image.attached? %>
+<%= image_tag @book.image, size: "300×300"　%>
+<% else %>
+<%= image_tag 'no_image', size: "300×300"　%>
+<%=link_to "編集", edit_book_path(@book.id) %>
+<%=link_to "削除", destroy_book_path(@book.id),method: :delete, "date-confirm" => "本当に削除しますか?" %>
