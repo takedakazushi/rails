@@ -1,7 +1,7 @@
-<h1>Show</h1>
-<p><%= @book.title %></p>
-<h2>本文</h2>
-<p><%= @book.body %></p>
-<h2></h2>
-<%=link_to "編集", edit_book_path(@book.id) %>
-<%=link_to "削除", book_path(@book.id), method: :delete, "date-confirm" => "本当に削除しますか?" %>
+<%=  flash[:notice] %>
+<h1>Title</h1>
+<%= @book.title %>
+<h2>Body</h2>
+<%= @book.body %>
+<%=link_to "Edit", edit_book_path(@book.id) %>
+<%=link_to "Back", book_path(@book.id), method: :delete, "date-confirm" => "Are you sure?" %>

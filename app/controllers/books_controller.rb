@@ -12,9 +12,13 @@ class BooksController < ApplicationController
     @book=Book.find(params[:id])
   end
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id)
+    flash[:notice] = "Book was successfully created"
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+       redirect_to book_path(@book.id)
+    else
+       render :edit
+    end
   end
   def new
     @book = Book.new
@@ -22,10 +26,10 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      flash[:notice] = "投稿に成功しました"
+      flash[:notice] = "Book was successfully created"
       redirect_to book_path(@book.id)
     else
-      flash[:alret] = "投稿に失敗しました"
+      flash[:alret] = ""
       @books=Book.all
       render :index
     end
